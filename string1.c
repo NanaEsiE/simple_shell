@@ -1,87 +1,87 @@
 #include "shell.h"
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * _strcpy - cpying str
+ * @destn: destination
+ * @source: str source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *destn, char *source)
 {
-	int i = 0;
+	int l = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (destn == source || source == 0)
+		return (destn);
+	while (source[l])
 	{
-		dest[i] = src[i];
-		i++;
+		destn[l] = source[l];
+		l++;
 	}
-	dest[i] = 0;
-	return (dest);
+	destn[l] = 0;
+	return (destn);
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
+ * _strdup - str duplication
+ * @str: str to duplicate
  *
- * Return: pointer to the duplicated string
+ * Return: ptr to duplicated str
  */
 char *_strdup(const char *str)
 {
-	int length = 0;
-	char *ret;
+	int len = 0;
+	char *sdup;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
-		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
+		len++;
+	sdup = malloc(sizeof(char) * (len + 1));
+	if (!sdup)
 		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+	for (len++; len--;)
+		sdup[len] = *--str;
+	return (sdup);
 }
 
 /**
- * _puts - prints an input string
- * @str: the string to be printed
+ * _puts - print an input string
+ * @str: str to prints
  *
- * Return: Nothing
+ * Return: 0 (put)
  */
 void _puts(char *str)
 {
-	int i = 0;
+	int l = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[l] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(str[l]);
+		l++;
 	}
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * _putchar - print xter c to stdout, return 1 on successo
+ * on error, -1 is returned, and errno is set appropriately
+ * @c: xter to print
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: 0 (putchar)
  */
 int _putchar(char c)
 {
-	static int i;
+	static int l;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || l >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, l);
+		l = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[l++] = c;
 	return (1);
 }
