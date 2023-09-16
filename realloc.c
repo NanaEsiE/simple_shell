@@ -1,62 +1,63 @@
 #include "shell.h"
 
 /**
- * _memset - fills memory with a constant byte
- * @s: the pointer to the memory area
- * @b: the byte to fill *s with
- * @n: the amount of bytes to be filled
- * Return: (s) a pointer to the memory area s
- */
-char *_memset(char *s, char b, unsigned int n)
-{
-	unsigned int i;
-
-	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
-}
-
-/**
- * ffree - frees a string of strings
- * @pp: string of strings
- */
-void ffree(char **pp)
-{
-	char **a = pp;
-
-	if (!pp)
-		return;
-	while (*pp)
-		free(*pp++);
-	free(a);
-}
-
-/**
- * _realloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * _memset - fill memo with a byte (byte is contant)
+ * @x: memory area to be fill
+ * @d: byte to fill *x with
+ * @m: amount of bytes to be fill
  *
- * Return: pointer to da ol'block nameen.
+ * Return: (x) ptr to memory area x
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+char *_memset(char *x, char d, unsigned int m)
 {
-	char *p;
+	unsigned int l;
+
+	for (l = 0; l < m; l++)
+		x[l] = d;
+	return (x);
+}
+
+/**
+ * ffree - frees str of strings
+ * @qq: str of strings
+ */
+void ffree(char **qq)
+{
+	char **z = qq;
+
+	if (!qq)
+		return;
+	while (*qq)
+		free(*qq++);
+	free(z);
+}
+
+/**
+ * _realloc - memory block reallocations
+ * @ptr: input malloc'ated block
+ * @old_memsize: old byte block size
+ * @new_memsize: new byte block size
+ *
+ * Return: 0 (newmem to oldmem)
+ */
+void *_realloc(void *ptr, unsigned int old_memsize, unsigned int new_memsize)
+{
+	char *q;
 
 	if (!ptr)
-		return (malloc(new_size));
-	if (!new_size)
+		return (malloc(new_memsize));
+	if (!new_memsize)
 		return (free(ptr), NULL);
-	if (new_size == old_size)
+	if (new_memsize == old_memsize)
 		return (ptr);
 
-	p = malloc(new_size);
-	if (!p)
+	q = malloc(new_memsize);
+	if (!q)
 		return (NULL);
 
-	old_size = old_size < new_size ? old_size : new_size;
-	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
+	old_memsize = old_memsize < new_memsize ? old_memsize : new_memsize;
+	while (old_memsize--)
+		q[old_memsize] = ((char *)ptr)[old_memsize];
 	free(ptr);
-	return (p);
+	return (q);
 }
